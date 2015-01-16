@@ -1,20 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Window size="800,600" mininfo="600,400" caption="0,0,0,32" sizebox="4,4,4,4"> <!-- ´°¿ÚµÄ³õÊ¼³ß´ç(¿í800£¬¸ß600)¡¢´°¿ÚµÄ×îÐ¡³ß´ç(¿í600£¬¸ß400)¡¢±êÌâÀ¸ÍÏ×§ÇøÓò(¸ß32)¡¢¿ÉÍÏ×§±ß¿ò´óÐ¡(ÕâÀïÌí¼Ósizeboxºó¾Í¿ÉÒÔÍÏ×§±ß¿òµ÷Õû´óÐ¡ÁË) -->
-    <VerticalLayout bkcolor="#FFF0F0F0" bkcolor2="#FFAAAAA0"> <!-- Õû¸ö´°¿ÚµÄ±³¾°É« -->
-        <!-- ±êÌâÀ¸Çø -->
-        <HorizontalLayout height="32" bkcolor="#FFE6E6DC" bkcolor2="#FFAAAAA0"> <!-- ±êÌâÀ¸±³¾°É« bkcolor¡¢bkcolor2¡¢bkcolor3·Ö±ðÊÇ½¥±äÉ«µÄÈý¸öÖµ-->         
-            <VerticalLayout /> <!-- Õ¼¿ÕÎ»£¬Õ¼¾Ý×ó±ßËùÓÐµÄ¿ÕÎ»-->
-            <VerticalLayout width="77"> <!-- ÓÒ±ßÈý¸ö¿Ø¼þËùÕ¼µÄ¿í¶È-->
-                <Button name="minbtn"   tooltip="×îÐ¡»¯" float="true" pos="0,5,22,24"  width="23" normalimage=" file='SysBtn\MinNormal.bmp' " hotimage=" file='SysBtn\MinFocus.bmp' " pushedimage=" file='SysBtn\MinFocus.bmp' "/>
-                <Button name="maxbtn"   tooltip="×î´ó»¯" float="true" pos="22,5,44,24" width="23" normalimage=" file='SysBtn\MaxNormal.bmp' " hotimage=" file='SysBtn\MaxFocus.bmp' " pushedimage=" file='SysBtn\MaxFocus.bmp' " />
-                <Button name="restorebtn" visible="false" tooltip="»¹Ô­" float="true" pos="22,5,44,24" width="23" normalimage=" file='SysBtn\StoreNormal.bmp' " hotimage=" file='SysBtn\StoreFocus.bmp' " pushedimage=" file='SysBtn\StoreFocus.bmp' " />
-                <Button name="closebtn" tooltip="¹Ø±Õ"   float="true" pos="44,5,74,24" width="28" normalimage=" file='SysBtn\CloseNormal.bmp' " hotimage=" file='SysBtn\CloseFocus.bmp' " pushedimage=" file='SysBtn\CloseFocus.bmp' "/>
-            </VerticalLayout>      
+ <?xml version="1.0" encoding="UTF-8"?>
+<Window size="800,600" mininfo="600,400" caption="0,0,0,32" sizebox="4,4,4,4"> <!-- çª—å£çš„åˆå§‹å°ºå¯¸(å®½800ï¼Œé«˜600)ã€çª—å£çš„æœ€å°å°ºå¯¸(å®½600ï¼Œé«˜400)ã€æ ‡é¢˜æ æ‹–æ‹½åŒºåŸŸ(é«˜32)ã€å¯æ‹–æ‹½è¾¹æ¡†å¤§å°(è¿™é‡Œæ·»åŠ sizeboxåŽå°±å¯ä»¥æ‹–æ‹½è¾¹æ¡†è°ƒæ•´å¤§å°äº†) -->
+    <VerticalLayout bkcolor="#FFF0F0F0" bkcolor2="#FFAAAAA0"> <!-- æ•´ä¸ªçª—å£çš„èƒŒæ™¯è‰² -->
+        <!-- æ ‡é¢˜æ åŒº -->
+        <HorizontalLayout height="24" bkcolor="#FFE6E6DC" bkcolor2="#FFAAAAA0"> <!-- æ ‡é¢˜æ èƒŒæ™¯è‰² bkcolorã€bkcolor2ã€bkcolor3åˆ†åˆ«æ˜¯æ¸å˜è‰²çš„ä¸‰ä¸ªå€¼-->         
+            <HorizontalLayout /> <!-- å ç©ºä½ï¼Œå æ®å·¦è¾¹æ‰€æœ‰çš„ç©ºä½-->
+            <HorizontalLayout width="77"> <!-- å³è¾¹ä¸‰ä¸ªæŽ§ä»¶æ‰€å çš„å®½åº¦-->
+                <Button name="minbtn"   tooltip="æœ€å°åŒ–" float="true" pos="0,5,100,24"  width="23" normalimage=" file='SysBtn\MinNormal.bmp' " hotimage=" file='SysBtn\MinFocus.bmp' " pushedimage=" file='SysBtn\MinFocus.bmp' "/>
+                <Button name="maxbtn"   tooltip="æœ€å¤§åŒ–" float="true" pos="22,5,100,24" width="23" normalimage=" file='SysBtn\MaxNormal.bmp' " hotimage=" file='SysBtn\MaxFocus.bmp' " pushedimage=" file='SysBtn\MaxFocus.bmp' " />
+                <Button name="restorebtn" visible="false" tooltip="è¿˜åŽŸ" float="true" pos="22,5,100,24" width="23" normalimage=" file='SysBtn\StoreNormal.bmp' " hotimage=" file='SysBtn\StoreFocus.bmp' " pushedimage=" file='SysBtn\StoreFocus.bmp' " />
+                <Button name="closebtn" tooltip="å…³é—­"   float="true" pos="44,5,100,24" width="28" normalimage=" file='SysBtn\CloseNormal.bmp' " hotimage=" file='SysBtn\CloseFocus.bmp' " pushedimage=" file='SysBtn\CloseFocus.bmp' "/>
+            </HorizontalLayout>      
         </HorizontalLayout>
-        
-        <!-- ¿Í»§Çø -->
+        <!-- å®¢æˆ·åŒº -->
         <HorizontalLayout>
-        <Button name="btnHello" text="Hello World"/>
+        <Button name="btnHello" text="Hello world"/>
     </HorizontalLayout>
     </VerticalLayout>
 </Window>
