@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="800,600" sizebox="4,4,4,4" caption="0,0,0,32" mininfo="800,600" maxinfo="800,600">
+<Font name="华文琥珀" size="16" default="true" />
+    <VerticalLayout bkcolor="#FFF7F7F7" bkcolor2="#FFFFFFFF">
+        <HorizontalLayout height="24" bkcolor="#FFF7F7F7" bkcolor2="#FFF7F7F7">
+            <HorizontalLayout />
+            <HorizontalLayout width="77">
+                <Button name="minbtn" tooltip="最小化" float="true" pos="3,1,0,0" width="23" height="19" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage=" file=&apos;SysBtn\MinNormal.bmp&apos; " hotimage=" file=&apos;SysBtn\MinFocus.bmp&apos; " pushedimage=" file=&apos;SysBtn\MinFocus.bmp&apos; " />
+                <Button name="maxbtn" tooltip="最大化" float="true" pos="26,1,0,0" width="23" height="19" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage=" file=&apos;SysBtn\MaxNormal.bmp&apos; " hotimage=" file=&apos;SysBtn\MaxFocus.bmp&apos; " pushedimage=" file=&apos;SysBtn\MaxFocus.bmp&apos; " />
+                <Button name="restorebtn" tooltip="还原" visible="false" float="true" pos="26,1,0,0" width="23" height="19" align="center" normalimage=" file=&apos;SysBtn\StoreNormal.bmp&apos; " hotimage=" file=&apos;SysBtn\StoreFocus.bmp&apos; " pushedimage=" file=&apos;SysBtn\StoreFocus.bmp&apos; " />
+                <Button name="closebtn" tooltip="关闭" float="true" pos="48,1,0,0" width="28" height="19" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage=" file=&apos;SysBtn\CloseNormal.bmp&apos; " hotimage=" file=&apos;SysBtn\CloseFocus.bmp&apos; " pushedimage=" file=&apos;SysBtn\CloseFocus.bmp&apos; " />
+            </HorizontalLayout>
+        </HorizontalLayout>
+
+        <HorizontalLayout>
+            <Button name="installbtn" text="安装ROM" float="true" pos="391,169,0,0" width="96" height="35" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" align="center" normalimage=" file=&apos;\Btn\button_normal.png&apos; " hotimage=" file=&apos;\Btn\button_on.png&apos; " pushedimage=" file=&apos;\Btn\button_push.png&apos; " focusedimage=" file=&apos;\Btn\button_normal.png&apos; " />
+        </HorizontalLayout>
+    </VerticalLayout>
+</Window>

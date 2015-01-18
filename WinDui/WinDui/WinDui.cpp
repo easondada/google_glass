@@ -3,6 +3,7 @@
 #pragma once
 #include "stdafx.h"
 #include "UIlib.h"
+//#include "WndShadow.h"
 using namespace DuiLib;
 
 #ifdef _DEBUG
@@ -25,16 +26,35 @@ public:
 	virtual LPCTSTR    GetWindowClassName() const   { return _T("DUIMainFrame"); }
 	virtual CDuiString GetSkinFile()                { return _T("WinDui.xml"); }
 	virtual CDuiString GetSkinFolder()              { return _T(""); }
-};
+	virtual void Notify(TNotifyUI& msg)
+	{
+		if (msg.sType == _T("selectchanged"))
+		{
+			CDuiString    strName = msg.pSender->GetName();
+			CTabLayoutUI* pControl = static_cast<CTabLayoutUI*>(m_PaintManager.FindControl(_T("tab")));
 
+			if (strName == _T("OptionDemo1"))
+				pControl->SelectItem(0);
+			else if (strName == _T("OptionDemo2"))
+				pControl->SelectItem(1);
+			else if (strName == _T("OptionDemo3"))
+				pControl->SelectItem(2);
+		}
+		__super::Notify(msg);
+	}
+};
 int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow)
 {
 	CPaintManagerUI::SetInstance(hInstance);
+	//CPaintManagerUI::SetResourcePath(CPaintManagerUI::GetInstancePath());
 
-	CDuiFrameWnd duiFrame;
-	duiFrame.Create(NULL, _T("DUIWnd"), UI_WNDSTYLE_FRAME, WS_EX_WINDOWEDGE);
-	duiFrame.CenterWindow();
-	duiFrame.ShowModal();
+	CDuiFrameWnd *pFrame = new CDuiFrameWnd;
+	if (!pFrame) return 0;
+	pFrame->Create(NULL, _T("DUIWnd"), UI_WNDSTYLE_FRAME, WS_EX_WINDOWEDGE);
+	pFrame->CenterWindow();
+	pFrame->ShowModal();
+
+	delete pFrame;
 	return 0;
 }
 

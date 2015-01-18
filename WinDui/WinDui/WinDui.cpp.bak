@@ -1,0 +1,46 @@
+// WinDui.cpp : 定义应用程序的入口点。
+//第二次测试
+#pragma once
+#include "stdafx.h"
+#include "UIlib.h"
+//#include "WndShadow.h"
+using namespace DuiLib;
+
+#ifdef _DEBUG
+#   ifdef _UNICODE
+#       pragma comment(lib, "DuiLib_ud.lib")
+#   else
+#       pragma comment(lib, "DuiLib_d.lib")
+#   endif
+#else
+#   ifdef _UNICODE
+#       pragma comment(lib, "DuiLib_u.lib")
+#   else
+#       pragma comment(lib, "DuiLib.lib")
+#   endif
+#endif
+class CDuiFrameWnd : public WindowImplBase 
+{
+public:
+	virtual LPCTSTR    GetWindowClassName() const   { return _T("DUIMainFrame"); }
+	virtual CDuiString GetSkinFile()                { return _T("WinDui.xml"); }
+	virtual CDuiString GetSkinFolder()              { return _T(""); }
+};
+
+int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow)
+{
+	CPaintManagerUI::SetInstance(hInstance);
+	//CWndShadow::Initialize(hInstance);
+	HRESULT Hr = ::CoInitialize(NULL);//因为ActiveX控件用到了COM,所以需要初始化COM,为加载COM库提供支持,
+    if( FAILED(Hr) ) return 0;
+
+	CDuiFrameWnd *duiFrame = new CDuiFrameWnd();
+	duiFrame->Create(NULL, _T("DUIWnd"), UI_WNDSTYLE_FRAME, WS_EX_WINDOWEDGE);
+	duiFrame->CenterWindow();
+	duiFrame->ShowModal();
+	delete duiFrame;
+	::CoUninitialize();//退出程序并释放COM库
+	return 0;
+}
+
+

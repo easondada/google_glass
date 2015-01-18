@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<Window size="800,600" sizebox="4,4,4,4" caption="0,0,0,32" mininfo="600,400">
-    <VerticalLayout bkcolor="#FFF0F0F0" bkcolor2="#FFAAAAA0">
-        <HorizontalLayout height="24" bkcolor="#FFE6E6DC" bkcolor2="#FFAAAAA0">
-            <HorizontalLayout />
-            <HorizontalLayout width="77">
-                <Button name="minbtn" tooltip="最小化" float="true" pos="3,1,0,0" width="23" height="19" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage=" file=&apos;SysBtn\MinNormal.bmp&apos; " hotimage=" file=&apos;SysBtn\MinFocus.bmp&apos; " pushedimage=" file=&apos;SysBtn\MinFocus.bmp&apos; " />
-                <Button name="maxbtn" tooltip="最大化" float="true" pos="26,1,0,0" width="23" height="19" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage=" file=&apos;SysBtn\MaxNormal.bmp&apos; " hotimage=" file=&apos;SysBtn\MaxFocus.bmp&apos; " pushedimage=" file=&apos;SysBtn\MaxFocus.bmp&apos; " />
-                <Button name="restorebtn" tooltip="还原" visible="false" float="true" pos="26,1,0,0" width="23" height="19" align="center" normalimage=" file=&apos;SysBtn\StoreNormal.bmp&apos; " hotimage=" file=&apos;SysBtn\StoreFocus.bmp&apos; " pushedimage=" file=&apos;SysBtn\StoreFocus.bmp&apos; " />
-                <Button name="closebtn" tooltip="关闭" float="true" pos="48,1,0,0" width="28" height="19" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage=" file=&apos;SysBtn\CloseNormal.bmp&apos; " hotimage=" file=&apos;SysBtn\CloseFocus.bmp&apos; " pushedimage=" file=&apos;SysBtn\CloseFocus.bmp&apos; " />
+<Window size="800,600" sizebox="4,4,4,4" caption="0,0,0,32" mininfo="800,600" maxinfo="800,600">
+    <Font name="新宋体" size="16" bold="false" italic="false" default="true" />
+        <VerticalLayout bkcolor="#FFF7F7F7" bkcolor2="#FFFFFFFF">
+            <HorizontalLayout width="800" height="22" bkcolor="#FFF7F7F7" bkcolor2="#FFF7F7F7">
+                <HorizontalLayout width="743" height="1" bkcolor="#FFFF3300" /><!--上部-->
+                <HorizontalLayout width="68" height="24" bkcolor="#00F7F7F7">
+                    <Button name="minbtn" tooltip="最小化" float="true" pos="1,1,0,0" width="28" height="19" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage=" file=&apos;SysBtn\MinNormal.bmp&apos; " hotimage=" file=&apos;SysBtn\MinFocus.bmp&apos; " pushedimage=" file=&apos;SysBtn\MinFocus.bmp&apos; " />
+                    <Button name="closebtn" tooltip="关闭" float="true" pos="28,1,0,0" width="28" height="19" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage=" file=&apos;SysBtn\CloseNormal.bmp&apos; " hotimage=" file=&apos;SysBtn\CloseFocus.bmp&apos; " pushedimage=" file=&apos;SysBtn\CloseFocus.bmp&apos; " />
+                </HorizontalLayout>
             </HorizontalLayout>
-        </HorizontalLayout>
+			<!--客户区-->
+            <HorizontalLayout>
+						<Button name="installbtn" text="安装ROM" float="true" pos="389,194,0,0" width="96" height="35" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" align="center" normalimage=" file=&apos;\Btn\button_normal.png&apos; " hotimage=" file=&apos;\Btn\button_on.png&apos; " pushedimage=" file=&apos;\Btn\button_push.png&apos; " focusedimage=" file=&apos;\Btn\button_normal.png&apos; " />
 
-        <HorizontalLayout>
-             <Button text="ROM"       float="true" pos="20,14,0,0" width="60" height="25" normalimage=" file='BtnStyle\XP\button_nor.png' " hotimage=" file='BtnStyle\XP\button_over.png' " pushedimage=" file='BtnStyle\XP\button_down.png' " focusedimage=" file='BtnStyle\XP\button_focus.png' " />
-        </HorizontalLayout>
-    </VerticalLayout>
+						<Option name="OptionDemo1" text="应用商店" float="true" pos="207,28,0,0" width="60" height="30" group="tabDemo" textcolor="#FFC4C4C4" itemselectedtextcolor="#FF000000" selected="true" bkcolor="#FFF7F7F7"/>
+						<Option name="OptionDemo2" text="应用" float="true" pos="284,28,0,0" width="60" height="30"  group="tabDemo" textcolor="#FFC4C4C4" selectedcolor="#FF000000"/>
+						<Option name="OptionDemo3" text="音乐" float="true" pos="361,28,0,0" width="60" height="30"  group="tabDemo" textcolor="#FFC4C4C4" selectedcolor="#FF000000"/>
+
+					   <TabLayout name="tab" float="true" pos="202,75,0,0" width="568" height="169" bkcolor="#FFF7F7F7">
+							<Label text="Option1" bkcolor="#FFC5D4F2" align="center" />
+							<Label text="Option2" bkcolor="#FFFFDC78" align="centerwrap" height="160"/>
+							<Label text="Option3" bkcolor="#FFBECEA1" align="centerwrap" width="300"/>
+						</TabLayout>
+            </HorizontalLayout>
+            <HorizontalLayout height="1" bkcolor="#FFFF3300" /><!--底部-->
+        </VerticalLayout>
 </Window>
