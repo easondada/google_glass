@@ -20,7 +20,7 @@ ATOM				MyRegisterClass(HINSTANCE hInstance);
 BOOL				InitInstance(HINSTANCE, int);
 LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
-double GetRadian(POINTS beg, POINTS end)
+/*double GetRadian(POINTS beg, POINTS end)
 {
 	double x, y;
 	DWORD radian;
@@ -28,16 +28,16 @@ double GetRadian(POINTS beg, POINTS end)
 	y = end.y - beg.y;
 	radian = (DWORD)sqrt(x*x + y*y);
 	return radian;
-}
+}*/
 //用AngleArc函数画弧线
-void doDraw(HDC hdc, POINTS beg, POINTS end, float start,float angle)//角度，所占比例*360=度数
+void doDraw(HDC hdc, POINTS centre, DWORD radian, float start, float angle)//角度，所占比例*360=度数
 {
-	DWORD radian;//半径
-	radian = (DWORD)GetRadian(beg, end);
-	MoveToEx(hdc, (int)(beg.x + radian*cos(start*RADIAN)),
-		(int)(beg.y - radian*sin(start*RADIAN)),
+	//DWORD radian;//半径
+	//radian = (DWORD)GetRadian(beg, end);
+	MoveToEx(hdc, (int)(centre.x + radian*cos(start*RADIAN)),
+		(int)(centre.y - radian*sin(start*RADIAN)),
 		NULL);
-	AngleArc(hdc, beg.x, beg.y, radian, start, angle);
+	AngleArc(hdc, centre.x, centre.y, radian, start, angle);
 	return;
 }
 int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
@@ -141,22 +141,30 @@ void DrawPie(HWND hWnd)
 }
 void OnPaint(HWND hWnd)
 {
-	POINTS beg = {100,100};
-	POINTS end = {60,60};
+	POINTS  centre = { 200, 200 };//圆心坐标
+	DWORD r = 70;
+	//POINTS end = {60,60};
 	PAINTSTRUCT ps = {0};
 	HDC hdc;//绘图句柄
 	hdc = BeginPaint(hWnd, &ps);
-	SetPixel(hdc, beg.x, beg.y, RGB(0, 0, 0));
-	SetPixel(hdc, end.x, end.y, RGB(255, 0, 0));
+	//SetPixel(hdc, centre.x, centre.y, RGB(0, 0, 0));
+	//获得画笔:有多少种类型信息就有多少画笔
 	HPEN hPen_1, hPen_2, hOldPen_1, hOldPen_2;
-	hPen_1 = CreatePen(PS_SOLID, 10, RGB(0, 100, 255));
-	hPen_2 = CreatePen(PS_SOLID, 10, RGB(100, 100, 0));
-
+	hPen_1 = CreatePen(PS_SOLID, 5, RGB(0, 100, 255));
+	hPen_2 = CreatePen(PS_SOLID, 5, RGB(100, 100, 0));
+	//开画
 	hOldPen_1 = (HPEN)SelectObject(hdc, hPen_1);
-	doDraw(hdc,beg,end,0,270);
+	for (int i = 0; i < 10; i++)
+	{
+		doDraw(hdc, centre, r+=4, 0, 270);
+	}
+	r = 70;
 	hOldPen_2 = (HPEN)SelectObject(hdc, hPen_2);
-	doDraw(hdc, beg, end,270,90);
-
+	for (int i = 0; i < 10; i++)
+	{
+		doDraw(hdc, centre, r+=4, 270,90 );
+	}
+	//释放
 	SelectObject(hdc, hOldPen_1);
 	SelectObject(hdc, hOldPen_2);
 
