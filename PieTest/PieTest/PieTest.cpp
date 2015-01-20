@@ -40,6 +40,40 @@ void doDraw(HDC hdc, POINTS centre, DWORD radian, float start, float angle)//Ω«∂
 	AngleArc(hdc, centre.x, centre.y, radian, start, angle);
 	return;
 }
+void OnPaint(HWND hWnd)
+{
+	POINTS  centre = { 200, 200 };//‘≤–ƒ◊¯±Í
+	DWORD r = 70;
+	//POINTS end = {60,60};
+	PAINTSTRUCT ps = {0};
+	HDC hdc;//ªÊÕºæ‰±˙
+	hdc = BeginPaint(hWnd, &ps);
+	//SetPixel(hdc, centre.x, centre.y, RGB(0, 0, 0));
+	//ªÒµ√ª≠± :”–∂‡…Ÿ÷÷¿‡–Õ–≈œ¢æÕ”–∂‡…Ÿª≠± 
+	HPEN hPen_1, hPen_2, hOldPen_1, hOldPen_2;
+	hPen_1 = CreatePen(PS_SOLID, 5, RGB(0, 100, 255));
+	hPen_2 = CreatePen(PS_SOLID, 5, RGB(100, 100, 0));
+	//ø™ª≠
+	hOldPen_1 = (HPEN)SelectObject(hdc, hPen_1);
+	for (int i = 0; i < 10; i++)
+	{
+		doDraw(hdc, centre, r+=4, 0, 270);
+	}
+	r = 70;
+	hOldPen_2 = (HPEN)SelectObject(hdc, hPen_2);
+	for (int i = 0; i < 10; i++)
+	{
+		doDraw(hdc, centre, r+=4, 270,90 );
+	}
+	// Õ∑≈
+	SelectObject(hdc, hOldPen_1);
+	SelectObject(hdc, hOldPen_2);
+
+	DeleteObject(hPen_1);
+	DeleteObject(hPen_2);
+
+	EndPaint(hWnd, &ps);
+}
 int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
                      _In_ LPTSTR    lpCmdLine,
@@ -139,40 +173,7 @@ void DrawPie(HWND hWnd)
 {
 	InvalidateRect(hWnd, NULL, TRUE);
 }
-void OnPaint(HWND hWnd)
-{
-	POINTS  centre = { 200, 200 };//‘≤–ƒ◊¯±Í
-	DWORD r = 70;
-	//POINTS end = {60,60};
-	PAINTSTRUCT ps = {0};
-	HDC hdc;//ªÊÕºæ‰±˙
-	hdc = BeginPaint(hWnd, &ps);
-	//SetPixel(hdc, centre.x, centre.y, RGB(0, 0, 0));
-	//ªÒµ√ª≠± :”–∂‡…Ÿ÷÷¿‡–Õ–≈œ¢æÕ”–∂‡…Ÿª≠± 
-	HPEN hPen_1, hPen_2, hOldPen_1, hOldPen_2;
-	hPen_1 = CreatePen(PS_SOLID, 5, RGB(0, 100, 255));
-	hPen_2 = CreatePen(PS_SOLID, 5, RGB(100, 100, 0));
-	//ø™ª≠
-	hOldPen_1 = (HPEN)SelectObject(hdc, hPen_1);
-	for (int i = 0; i < 10; i++)
-	{
-		doDraw(hdc, centre, r+=4, 0, 270);
-	}
-	r = 70;
-	hOldPen_2 = (HPEN)SelectObject(hdc, hPen_2);
-	for (int i = 0; i < 10; i++)
-	{
-		doDraw(hdc, centre, r+=4, 270,90 );
-	}
-	// Õ∑≈
-	SelectObject(hdc, hOldPen_1);
-	SelectObject(hdc, hOldPen_2);
 
-	DeleteObject(hPen_1);
-	DeleteObject(hPen_2);
-
-	EndPaint(hWnd, &ps);
-}
 void OnClick(HWND hWnd,LPARAM lParam)
 {
 	char szText[256] = "";
