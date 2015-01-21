@@ -107,7 +107,7 @@ void CDuiFrameWnd::GetDiskCap()
 	unsigned _int64 i64FreeBytesToCaller;
 	unsigned _int64 i64TotalBytes;
 	unsigned _int64 i64FreeBytes;
-	fResult = GetDiskFreeSpaceEx(_T("D:"), (PULARGE_INTEGER)&i64FreeBytesToCaller, (PULARGE_INTEGER)&i64TotalBytes, (PULARGE_INTEGER)&i64FreeBytes);
+	fResult = GetDiskFreeSpaceEx(_T(DISK_STR), (PULARGE_INTEGER)&i64FreeBytesToCaller, (PULARGE_INTEGER)&i64TotalBytes, (PULARGE_INTEGER)&i64FreeBytes);
 	if (fResult)
 	{//µ¥Î»MB
 		allspace = (float)(_int64)i64TotalBytes / 1024 / 1024;

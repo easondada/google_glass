@@ -7,6 +7,7 @@
 #include <shlobj.h>
 #define RADIAN 3.1415926/180.0
 #define MAX_TEXT 50
+#define DISK_STR "D:"
 
 using namespace DuiLib;
 
