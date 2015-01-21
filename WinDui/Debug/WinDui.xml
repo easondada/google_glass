@@ -31,15 +31,15 @@
                 <Button name="colorbtn_3" float="true" pos="415,153,0,0" width="12" height="25" bkcolor="#FFFF3300" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
                 <Label text="其他" float="true" pos="250,217,0,0" width="51" height="25" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
                 <Button name="colorbtn_4" float="true" pos="312,217,0,0" width="12" height="25" bkcolor="#FFF7F709" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
-                <Label text="可用" float="true" pos="9,214,0,0" width="53" height="31" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
-                <Button name="colorbtn_5" float="true" pos="75,217,0,0" width="12" height="25" bkcolor="#FFCCFF00" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+                <Label text="可用" float="true" pos="14,184,0,0" width="53" height="31" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
+                <Button name="colorbtn_5" float="true" pos="78,185,0,0" width="12" height="25" bkcolor="#FFCCFF00" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
             </HorizontalLayout>
             <Progress name="ProgressDemo1" float="true" pos="23,184,0,0" width="490" height="8" bkimage="Progress/progress_back.png" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" foreimage="Progress/progress_fore.png" min="0" max="100" value="50" hor="true" />
             <Label name="spaceinfo_1" text="00MB" float="true" pos="377,294,0,0" width="117" height="20" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
             <Label name="spaceinfo_2" text="00MB" float="true" pos="375,371,0,0" width="122" height="21" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
             <Label name="spaceinfo_3" text="00MB" float="true" pos="384,435,0,0" width="110" height="18" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
             <Label name="spaceinfo_4" text="00MB" float="true" pos="364,463,0,0" width="128" height="23" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
-            <Label name="spaceinfo_5" text="00MB" float="true" pos="125,469,0,0" width="141" height="19" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
+            <Label name="spaceinfo_5" text="00MB" float="true" pos="39,468,0,0" width="141" height="19" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
             <Label float="true" pos="528,238,0,0" width="110" height="110" bkimage=" file =&apos;pic\Foobar.png&apos; " textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
             <Label float="true" pos="675,384,0,0" width="110" height="110" bkimage=" file =&apos;pic\Pictures Folder.png&apos; " textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
             <Label float="true" pos="527,383,0,0" width="110" height="110" bkimage=" file =&apos;pic\Gmail alt.png&apos; " textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />

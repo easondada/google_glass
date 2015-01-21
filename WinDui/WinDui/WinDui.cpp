@@ -9,7 +9,7 @@
 #include <shlobj.h>
 #define RADIAN 3.1415926/180.0
 #define MAX_TEXT 50
-//#include "WndShadow.h"
+
 using namespace DuiLib;
 
 #ifdef _DEBUG
@@ -25,7 +25,6 @@ using namespace DuiLib;
 #       pragma comment(lib, "DuiLib.lib")
 #   endif
 #endif
-HANDLE g_Output = 0;
 class CDuiFrameWnd : public WindowImplBase
 {
 public:
@@ -202,16 +201,19 @@ public:
 	void GetUserPercentAngle(UINT i, ULONGLONG size)
 	{//获取可变路径的角度比例
 		//GetDiskCap();
-		ULONGLONG res = (size / 1024 );
+		ULONGLONG res = (size / 1024 /1024);
 		percentAngle[i]=(res/allspace)*360;
-	/*	if (res>1024)
-			swprintf_s(szText, _T("%0.2fMB"), res/1024);
+		if (res==0)
+			::MessageBox(NULL, _T("没选择任何目录！"), NULL, NULL);
+		if (res>1024)
+			swprintf_s(szText, _T("%0.2fGB"), (float)res/1024);
 		else
-			swprintf_s(szText, _T("%0.2fKB"), res );
-		spaceinfo[i]->SetText(szText);*/
+			swprintf_s(szText, _T("%0.2fMB"), (float)res);
+
+		spaceinfo[i]->SetText(szText);
 	}
 	void GetPercentAngle()
-	{//获取比例，测试阶	
+	{//获取比例，测试阶	,如果有bug，直接开放这里
 	/*	percentAngle[0] = 0;
 		percentAngle[1] = 40;
 		percentAngle[2] = 60;
@@ -225,19 +227,16 @@ public:
 			sum += percentAngle[i];
 		}
 		percentAngle[4] = (freespace / allspace) * 360;
+		if (percentAngle[4] >= 360)
+			::MessageBox(NULL, _T("error2"), NULL, NULL);
 		percentAngle[3] = 360 - sum - percentAngle[4];
-
-		//swprintf_s(szText, _T("%0.2fMB"), allspace-freespace-(sum*360)/allspace);
-		//spaceinfo[3]->SetText(szText);//其他
-		//swprintf_s(szText, _T("%0.2fGB"), freespace/1024);
-		//spaceinfo[4]->SetText(szText);//可用
+		if (percentAngle[3] >= 360)
+			::MessageBox(NULL, _T("error3"), NULL, NULL);
+		swprintf_s(szText, _T("%0.2fGB"), (allspace-freespace-(sum*360)/allspace)/1024);
+		spaceinfo[3]->SetText(szText);//其他
+		swprintf_s(szText, _T("%0.2fGB"), freespace/1024);
+		spaceinfo[4]->SetText(szText);//可用
 	}
-	/*void OnButtonDown(HWND hWnd, WPARAM wParam, LPARAM lParam)
-	{//测试窗口坐标
-		TCHAR szText[256] = { 0 };
-		swprintf_s(szText, _T("WM_LBUTTONDOWN:按键状态=%08X,x=%d,y=%d\n"), wParam, LOWORD(lParam), HIWORD(lParam));
-		WriteConsole(g_Output, szText, _tcslen(szText), NULL, NULL);
-	}*/
 	virtual void Notify(TNotifyUI& msg)
 	{//控件处理函数
 		if (msg.sType == _T("click"))
@@ -326,10 +325,7 @@ private:
 };
 int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow)
 {
-	//AllocConsole();
-	//g_Output = GetStdHandle(STD_OUTPUT_HANDLE);
 	CPaintManagerUI::SetInstance(hInstance);
-	//CPaintManagerUI::SetResourcePath(CPaintManagerUI::GetInstancePath());
 
 	CDuiFrameWnd *pFrame = new CDuiFrameWnd;
 	if (!pFrame) return 0;
