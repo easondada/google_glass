@@ -6,7 +6,9 @@
 #include "afxdlgs.h"
 #include "UIlib.h"
 #include "stdio.h"
+#include <shlobj.h>
 #define RADIAN 3.1415926/180.0
+#define MAX_TEXT 50
 //#include "WndShadow.h"
 using namespace DuiLib;
 
@@ -27,7 +29,7 @@ HANDLE g_Output = 0;
 class CDuiFrameWnd : public WindowImplBase
 {
 public:
-	CDuiFrameWnd ():flag(1){}
+	CDuiFrameWnd() :flag(1){}
 	virtual LPCTSTR    GetWindowClassName() const   { return _T("DUIMainFrame"); }
 	virtual CDuiString GetSkinFile()                { return _T("WinDui.xml"); }
 	virtual CDuiString GetSkinFolder()              { return _T(""); }
@@ -38,7 +40,15 @@ public:
 		cbtn[2] = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("colorbtn_3")));
 		cbtn[3] = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("colorbtn_4")));
 		cbtn[4] = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("colorbtn_5")));
+		spaceinfo[0] = static_cast<CLabelUI*>(m_PaintManager.FindControl(_T("spaceinfo_1")));
+		spaceinfo[1] = static_cast<CLabelUI*>(m_PaintManager.FindControl(_T("spaceinfo_2")));
+		spaceinfo[2] = static_cast<CLabelUI*>(m_PaintManager.FindControl(_T("spaceinfo_3")));
+		spaceinfo[3] = static_cast<CLabelUI*>(m_PaintManager.FindControl(_T("spaceinfo_4")));
+		spaceinfo[4] = static_cast<CLabelUI*>(m_PaintManager.FindControl(_T("spaceinfo_5")));
 		C_area = static_cast<CHorizontalLayoutUI*>(m_PaintManager.FindControl(_T("area_1")));
+		for (UINT i = 0; i < 5;i++)
+			percentAngle[i] = 0;
+		GetDiskCap();
 		PostMessage(WM_PAINT);
 	}
 	COLORREF ColorConvert(COLORREF &clr,DWORD Mode)//(ABGR)-->(ARGB);A-->FF
@@ -52,13 +62,9 @@ public:
 		*(pByte) = *(pByte + 2);
 		*(pByte + 2) = tmp;
 		if (Mode)
-		{
 			clr = clr | 0xFF000000;//将透明度A设为FF
-		}
 		else
-		{
 			clr = clr & 0x00FFFFFF;//透明度A设为00
-		}
 		return clr;
 	}
 	void doDraw(HDC hdc, POINTS centre, DWORD radian, float start, float angle)//角度，所占比例*360=度数
@@ -82,14 +88,15 @@ public:
 		//获得画笔:有多少种类型信息就有多少画笔
 		HPEN hPen[5], hOldPen[5];
 		//开画
-		for (int i = 0; i < 5; i++)
+		for (UINT i = 0; i < 5; i++)
 		{
 			hPen[i] = CreatePen(PS_SOLID, 3, ColorConvert(color[i],0));
 			hOldPen[i] = (HPEN)SelectObject(hdc, hPen[i]);
 
-			for (int j = 0; j < 18; j++)
+			for (UINT j = 0; j < 18; j++)
 			{//重复画弧线动作
-				doDraw(hdc, centre, r += 2, startAngle,percentAngle[i]);
+				if (percentAngle[i])
+					doDraw(hdc, centre, r += 2, startAngle,percentAngle[i]);
 			}
 			startAngle += percentAngle[i];//更新下次开始角度
 			r = 60;//重置半径
@@ -100,7 +107,7 @@ public:
 		ReleaseDC(hWnd,hdc);
 		//EndPaint(hWnd, &ps);
 	}
-	void GetButtonColor(int i, CDuiString  strName)
+	void GetButtonColor(UINT i, CDuiString  strName)
 	{//用户更改按钮颜色
 		CColorDialog  *ccd = new CColorDialog();
 		if (ccd->DoModal() == IDOK)
@@ -108,39 +115,129 @@ public:
 			cbtn[i] = static_cast<CButtonUI*>(m_PaintManager.FindControl(strName));
 			COLORREF clr = ccd->GetColor();//（ABGR）
 			cbtn[i]->SetBkColor(ColorConvert(clr,1));
-			//flag = !flag;//只要用户更改过颜色才重绘饼图
 			SendMessage(WM_PAINT);//直接send了
-			//InvalidateRect(m_hWnd, NULL, TRUE);//重绘，为了触发WM_PAINT消息
 		}
 		delete ccd;
 	}
 	void ColorForDraw()
 	{//获取颜色用来画饼图
-		//Init();//确保控件指针有所指的实体
-		for (int i = 0; i < 5; i++)
+		for (UINT i = 0; i < 5; i++)
 		{
 			color[i] = cbtn[i]->GetBkColor();
 		}
-		/*COLORREF clr = RGB(255, 100, 0);
-		TCHAR szText[256] = { 0 };
-		swprintf_s(szText, _T("颜色=%08X/n"), ColorConvert(clr,0));
-		WriteConsole(g_Output, szText, _tcslen(szText), NULL, NULL);*/
+	}
+	void GetDiskCap()
+	{//获取磁盘容量信息
+		//为了效果明显，只基于一个卷D:
+		LONG fResult;
+		freespace = 0;
+		allspace = 0;
+		unsigned _int64 i64FreeBytesToCaller;
+		unsigned _int64 i64TotalBytes;
+		unsigned _int64 i64FreeBytes;
+		fResult = GetDiskFreeSpaceEx(_T("D:"), (PULARGE_INTEGER)&i64FreeBytesToCaller, (PULARGE_INTEGER)&i64TotalBytes, (PULARGE_INTEGER)&i64FreeBytes);
+		if (fResult)
+		{//单位MB
+			allspace = (float)(_int64)i64TotalBytes / 1024 / 1024;
+			freespace = (float)(_int64)i64FreeBytesToCaller / 1024 / 1024;
+		}
+		else
+		{//cout << "设备未准备好";
+		}
+	}
+	ULONGLONG TraverseDir(CString& dir)
+	{//遍历文件夹函数,返回字节数,可能偏小
+		ULONGLONG filesize = 0;
+		CFileFind ff;
+		if (dir.Right(1) != "\\")
+			dir += "\\";
+		dir += "*.*";
+
+		BOOL ret = ff.FindFile(dir);
+		while (ret)
+		{
+			ret = ff.FindNextFile();
+			if (ret != 0)
+			{
+				if (ff.IsDirectory() && !ff.IsDots())
+				{
+					CString path = ff.GetFilePath();
+					TraverseDir(path);
+				}
+				else if (!ff.IsDirectory() && !ff.IsDots())
+				{
+					CString name = ff.GetFileName();
+					CString path = ff.GetFilePath();
+					filesize += ff.GetLength();
+				}
+			}
+		}
+		return filesize;
+	}
+	ULONGLONG GetFolderSize()
+	{//按下设置路径按钮后的一系列操作
+		BROWSEINFO lpbi;
+		TCHAR lpDir[MAX_PATH];
+		CString path;
+		Foldersize = 0;
+
+		lpbi.hwndOwner = m_hWnd;
+		lpbi.pidlRoot = NULL;  // 默认路径
+		lpbi.pszDisplayName = lpDir;
+		lpbi.lpszTitle = _T("请选择文件夹：");
+		lpbi.ulFlags = BIF_NEWDIALOGSTYLE;
+		lpbi.lpfn = NULL;
+		lpbi.lParam = NULL;
+		lpbi.iImage = NULL;
+
+		LPITEMIDLIST lpidl = ::SHBrowseForFolder(&lpbi);
+		if (lpidl&&SHGetPathFromIDList(lpidl, lpDir))
+		{//里面是获得文件夹大小的代码
+			path.Format(L"%s", lpDir);
+			Foldersize = TraverseDir(path);
+			return Foldersize;
+		}
+		return 0;
+	}
+	void GetUserPercentAngle(UINT i, ULONGLONG size)
+	{//获取可变路径的角度比例
+		//GetDiskCap();
+		ULONGLONG res = (size / 1024 );
+		percentAngle[i]=(res/allspace)*360;
+	/*	if (res>1024)
+			swprintf_s(szText, _T("%0.2fMB"), res/1024);
+		else
+			swprintf_s(szText, _T("%0.2fKB"), res );
+		spaceinfo[i]->SetText(szText);*/
 	}
 	void GetPercentAngle()
-	{//获取比例，测试阶段
-		percentAngle[0] = 10;
-		percentAngle[1] = 30;
+	{//获取比例，测试阶	
+	/*	percentAngle[0] = 0;
+		percentAngle[1] = 40;
 		percentAngle[2] = 60;
 		percentAngle[3] = 120;
-		percentAngle[4] = 140;
+		percentAngle[4] = 140;*/
 		//和应为360
+		//GetDiskCap();
+		float sum = 0;
+		for (UINT i = 0; i < 3; i++)
+		{
+			sum += percentAngle[i];
+		}
+		percentAngle[4] = (freespace / allspace) * 360;
+		percentAngle[3] = 360 - sum - percentAngle[4];
+
+		//swprintf_s(szText, _T("%0.2fMB"), allspace-freespace-(sum*360)/allspace);
+		//spaceinfo[3]->SetText(szText);//其他
+		//swprintf_s(szText, _T("%0.2fGB"), freespace/1024);
+		//spaceinfo[4]->SetText(szText);//可用
 	}
-	void OnButtonDown(HWND hWnd, WPARAM wParam, LPARAM lParam)
+	/*void OnButtonDown(HWND hWnd, WPARAM wParam, LPARAM lParam)
 	{//测试窗口坐标
 		TCHAR szText[256] = { 0 };
 		swprintf_s(szText, _T("WM_LBUTTONDOWN:按键状态=%08X,x=%d,y=%d\n"), wParam, LOWORD(lParam), HIWORD(lParam));
 		WriteConsole(g_Output, szText, _tcslen(szText), NULL, NULL);
-	}
+	}*/
 	virtual void Notify(TNotifyUI& msg)
 	{//控件处理函数
 		if (msg.sType == _T("click"))
@@ -173,11 +270,24 @@ public:
 				C_area = static_cast<CHorizontalLayoutUI*>(m_PaintManager.FindControl(_T("area_1")));
 				COLORREF clr = 0xFFFF3300;//边框颜色
 				C_area->SetBorderColor(clr);
+				SendMessage(WM_PAINT);
 			}
 			if (strName == _T("installbtn"))
-			{//最大的按钮
+			{//安装按钮
 				CProgressUI* pProgress = static_cast<CProgressUI*>(m_PaintManager.FindControl(_T("ProgressDemo1")));
 				pProgress->SetValue(100);
+			}
+			if (strName == _T("path_1"))
+			{//设置路径按钮1
+				GetUserPercentAngle(0, GetFolderSize());
+			}
+			else if (strName == _T("path_2"))
+			{//设置路径按钮2
+				GetUserPercentAngle(1, GetFolderSize());
+			}
+			else if (strName == _T("path_3"))
+			{//设置路径按钮3
+				GetUserPercentAngle(2, GetFolderSize());
 			}
 		}
 		__super::Notify(msg);
@@ -207,6 +317,11 @@ private:
 	CContainerUI *C_area;//布局容器
 	COLORREF color[5];//5种颜色
 	float percentAngle[5];//比例角度
+	CLabelUI *spaceinfo[5];//容量大小信息
+	ULONGLONG Foldersize;//文件大小
+	float freespace;//空闲容量
+	float allspace;//总容量
+	TCHAR szText[MAX_TEXT];//文本信息
 	INT flag;//控制初始化控件和画饼图的先后顺序
 };
 int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow)
