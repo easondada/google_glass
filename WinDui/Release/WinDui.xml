@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="800,600" sizebox="4,4,4,4" caption="0,0,0,32" mininfo="800,600" maxinfo="800,600">
+    <Font name="新宋体" size="16" bold="false" italic="false" default="true" />
+    <Font name="微软雅黑" size="20" bold="false" italic="false" />
+    <Font name="黑体" size="20" bold="false" italic="false" />
+    <Font name="黑体" size="27" bold="false" italic="false" />
+    <Font name="微软雅黑" size="14" bold="false" italic="false" />
+    <VerticalLayout bkcolor="#FFF7F7F7" bkcolor2="#FFFFFFFF">
+        <HorizontalLayout width="800" height="22" bkcolor="#FFF7F7F7" bkcolor2="#FFF7F7F7">
+            <HorizontalLayout width="743" height="1" bkcolor="#FFFF3300" />
+            <HorizontalLayout width="68" height="24" bkcolor="#00F7F7F7">
+                <Button name="minbtn" tooltip="最小化" float="true" pos="1,1,0,0" width="28" height="19" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage=" file=&apos;SysBtn\MinNormal.bmp&apos; " hotimage=" file=&apos;SysBtn\MinFocus.bmp&apos; " pushedimage=" file=&apos;SysBtn\MinFocus.bmp&apos; " />
+                <Button name="closebtn" tooltip="关闭" float="true" pos="28,1,0,0" width="28" height="19" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage=" file=&apos;SysBtn\CloseNormal.bmp&apos; " hotimage=" file=&apos;SysBtn\CloseFocus.bmp&apos; " pushedimage=" file=&apos;SysBtn\CloseFocus.bmp&apos; " />
+            </HorizontalLayout>
+        </HorizontalLayout>
+        <HorizontalLayout>
+            <Label text="空间状态" float="true" pos="36,255,0,0" width="87" height="42" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="1" align="center" />
+            <Label float="true" pos="32,26,0,0" width="82" height="81" bkimage=" file =&apos;pic\Services.png&apos; " textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+            <Button name="installbtn" text="安装ROM" float="true" pos="390,202,0,0" width="96" height="35" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" align="center" normalimage=" file=&apos;\Btn\button_normal.png&apos; " hotimage=" file=&apos;\Btn\button_hover.png&apos; " pushedimage=" file=&apos;\Btn\button_active.png&apos; " focusedimage=" file=&apos;\Btn\button_normal.png&apos; " />
+            <Button name="choice_1" text="我的设备" float="true" pos="107,63,0,0" width="128" height="58" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="3" align="center" />
+            <Button name="choice_2" text="应用商店" float="true" pos="253,77,0,0" width="97" height="37" textcolor="#FFC4C4C4" disabledtextcolor="#FFA7A6AA" font="2" align="center" />
+            <Button name="choice_3" text="GMail" float="true" pos="381,78,0,0" width="61" height="33" textcolor="#FFC4C4C4" disabledtextcolor="#FFA7A6AA" font="2" align="center" />
+            <Button name="choice_4" text="音乐" float="true" pos="482,80,0,0" width="60" height="30" textcolor="#FFC4C4C4" disabledtextcolor="#FFA7A6AA" font="2" align="center" />
+            <Button name="choice_5" text="照片" float="true" pos="561,80,0,0" width="60" height="30" textcolor="#FFC4C4C4" disabledtextcolor="#FFA7A6AA" font="2" align="center" />
+            <HorizontalLayout name="area_1" bordersize="1" float="true" pos="29,247,0,0" width="474" height="250" bkcolor="#00F7F7F7">
+                <Button name="path_1" text="照片" float="true" pos="346,9,0,0" width="48" height="29" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
+                <Button name="colorbtn_1" float="true" pos="415,11,0,0" width="12" height="25" bkcolor="#FF1ABDE6" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+                <Button name="path_2" text="音乐" float="true" pos="346,82,0,0" width="53" height="29" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
+                <Button name="colorbtn_2" float="true" pos="415,82,0,0" width="12" height="25" bkcolor="#FFFF0033" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+                <Button name="path_3" text="视频" float="true" pos="353,153,0,0" width="44" height="25" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
+                <Button name="colorbtn_3" float="true" pos="415,153,0,0" width="12" height="25" bkcolor="#FFFF3300" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+                <Label text="其他" float="true" pos="250,217,0,0" width="51" height="25" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
+                <Button name="colorbtn_4" float="true" pos="312,217,0,0" width="12" height="25" bkcolor="#FFF7F709" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+                <Label text="可用" float="true" pos="14,184,0,0" width="53" height="31" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
+                <Button name="colorbtn_5" float="true" pos="78,185,0,0" width="12" height="25" bkcolor="#FFCCFF00" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+            </HorizontalLayout>
+            <Progress name="ProgressDemo1" float="true" pos="23,184,0,0" width="490" height="8" bkimage="Progress/progress_back.png" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" foreimage="Progress/progress_fore.png" min="0" max="100" value="50" hor="true" />
+            <Label name="spaceinfo_1" text="00MB" float="true" pos="377,294,0,0" width="117" height="20" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
+            <Label name="spaceinfo_2" text="00MB" float="true" pos="375,371,0,0" width="122" height="21" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
+            <Label name="spaceinfo_3" text="00MB" float="true" pos="384,435,0,0" width="110" height="18" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
+            <Label name="spaceinfo_4" text="00MB" float="true" pos="364,463,0,0" width="128" height="23" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
+            <Label name="spaceinfo_5" text="00MB" float="true" pos="39,468,0,0" width="141" height="19" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
+            <Label float="true" pos="528,238,0,0" width="110" height="110" bkimage=" file =&apos;pic\Foobar.png&apos; " textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+            <Label float="true" pos="675,384,0,0" width="110" height="110" bkimage=" file =&apos;pic\Pictures Folder.png&apos; " textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+            <Label float="true" pos="527,383,0,0" width="110" height="110" bkimage=" file =&apos;pic\Gmail alt.png&apos; " textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+            <Label float="true" pos="673,239,0,0" width="110" height="110" bkimage=" file =&apos;pic\Chrome Web Store.png&apos; " textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+            <Edit text="音乐" float="true" pos="550,200,0,0" width="73" height="32" bkcolor="#00F7F7F7" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="20" align="center" />
+            <Edit text="应用商店" float="true" pos="690,195,0,0" width="77" height="40" bkcolor="#00F7F7F7" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="20" align="center" />
+            <Edit text="GMail" float="true" pos="521,353,0,0" width="116" height="29" bkcolor="#00F7F7F7" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="20" align="center" />
+            <Edit text="照片" float="true" pos="698,352,0,0" width="69" height="28" bkcolor="#00F7F7F7" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="20" align="center" />
+        </HorizontalLayout>
+        <HorizontalLayout height="1" bkcolor="#FFFF3300" />
+    </VerticalLayout>
+</Window>

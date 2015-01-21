@@ -30,12 +30,18 @@
     <ClInclude Include="WinDui.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CDuiFrameWnd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="WinDui.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CDuiFrameWnd.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

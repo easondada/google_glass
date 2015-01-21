@@ -14,7 +14,6 @@
             </HorizontalLayout>
         </HorizontalLayout>
         <HorizontalLayout>
-            <Label text="空间状态" float="true" pos="36,255,0,0" width="87" height="42" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="1" align="center" />
             <Label float="true" pos="32,26,0,0" width="82" height="81" bkimage=" file =&apos;pic\Services.png&apos; " textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
             <Button name="installbtn" text="安装ROM" float="true" pos="390,202,0,0" width="96" height="35" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" align="center" normalimage=" file=&apos;\Btn\button_normal.png&apos; " hotimage=" file=&apos;\Btn\button_hover.png&apos; " pushedimage=" file=&apos;\Btn\button_active.png&apos; " focusedimage=" file=&apos;\Btn\button_normal.png&apos; " />
             <Button name="choice_1" text="我的设备" float="true" pos="107,63,0,0" width="128" height="58" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="3" align="center" />
@@ -23,6 +22,7 @@
             <Button name="choice_4" text="音乐" float="true" pos="482,80,0,0" width="60" height="30" textcolor="#FFC4C4C4" disabledtextcolor="#FFA7A6AA" font="2" align="center" />
             <Button name="choice_5" text="照片" float="true" pos="561,80,0,0" width="60" height="30" textcolor="#FFC4C4C4" disabledtextcolor="#FFA7A6AA" font="2" align="center" />
             <HorizontalLayout name="area_1" bordersize="1" float="true" pos="29,247,0,0" width="474" height="250" bkcolor="#00F7F7F7">
+                <Label text="空间状态" float="true" pos="6,6,0,0" width="85" height="40" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="1" align="center" />
                 <Button name="path_1" text="照片" float="true" pos="346,9,0,0" width="48" height="29" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
                 <Button name="colorbtn_1" float="true" pos="415,11,0,0" width="12" height="25" bkcolor="#FF1ABDE6" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
                 <Button name="path_2" text="音乐" float="true" pos="346,82,0,0" width="53" height="29" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
@@ -33,6 +33,7 @@
                 <Button name="colorbtn_4" float="true" pos="312,217,0,0" width="12" height="25" bkcolor="#FFF7F709" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
                 <Label text="可用" float="true" pos="14,184,0,0" width="53" height="31" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
                 <Button name="colorbtn_5" float="true" pos="78,185,0,0" width="12" height="25" bkcolor="#FFCCFF00" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+                <Label name="percent" text="0%" float="true" pos="153,118,0,0" width="76" height="31" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="1" align="center" />
             </HorizontalLayout>
             <Progress name="ProgressDemo1" float="true" pos="23,184,0,0" width="490" height="8" bkimage="Progress/progress_back.png" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" foreimage="Progress/progress_fore.png" min="0" max="100" value="50" hor="true" />
             <Label name="spaceinfo_1" text="00MB" float="true" pos="377,294,0,0" width="117" height="20" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" font="4" align="center" />
